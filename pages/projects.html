@@ -1,6 +1,62 @@
-<div class="card">
-	<div class="title">Projects</div>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam voluptas, a natus qui temporibus sed, nihil eaque fuga mollitia, voluptatem rem in eos quas omnis excepturi neque quisquam tempora quidem!</p>
-	<a ui-sref="About">about</a>
+<div class="projectsContainer">
+
+<!-- 
+	<div class="card" ng-mouseover="changeNavColors('#009688', 'black')"  ng-mouseleave="resetNavColors()">
+		<img src="images/preview/music player.png" alt="">
+		<div class="title" ng-style="{'background': '#009688' , 'color': '#ECEFF1'}">
+		Fireshop
+		</div>
+		<div class="content">
+			<p>afafa 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, facilis. Incidunt modi accusamus expedita nemo, eveniet mollitia est velit animi officiis enim neque eaque exercitationem suscipit, cum voluptatibus corrupti eligendi.
+			</p>
+		</div>
+		<div class="bottomSheet">
+	  		<md-button class='md-primary'>Read more</md-button>
+	  	</div>
+	</div> -->
+
+	<div class="card" ng-repeat="(key, data) in projects" 
+		ng-mouseover="changeNavColors(data.background, data.color)" 
+		ng-mouseleave="resetNavColors()">
+		<img ng-src="images/preview/{{key}}.png" alt="{{key}} picture">
+		<div class="title" ng-style="{'background': data.background, 'color': data.color}">{{key}}</div>
+		<div class='content' ng-bind-html='data.content'></div>
+		<div class="bottomSheet">
+	  		<md-button class='md-primary' ui-sref="preview({projectName: key})" ng-click="resetNavColors()">Read more</md-button>
+	  	</div>
+	</div>
 </div>
 
+<footer>		
+	<a href="https://github.com/realappie" target="_blank">
+		<i class="fa fa-github">
+			<md-tooltip md-direction="bottom">Github</md-tooltip>
+		</i>
+	</a>
+	<a href="http://stackoverflow.com/users/4047409/5parc" target="_blank">
+		<i class="fa fa-stack-overflow">
+			<md-tooltip md-direction="bottom">Stackoverflow</md-tooltip>
+		</i>
+	</a>
+	<a href="https://codepen.io/Appie/" target="_blank">
+		<i class="fa fa-codepen">
+			<md-tooltip md-direction="bottom">Codepen</md-tooltip>
+		</i>
+	</a>
+	<a href="https://www.linkedin.com/in/abdallaelmedny" target="_blank">
+		<i class="fa fa-linkedin-square">
+			<md-tooltip md-direction="bottom">linkedIn</md-tooltip>
+		</i>
+	</a>
+	<a href="https://www.youtube.com/channel/UC3PDJtMHtJPba8mOWykOsKw" target="_blank">
+		<i class="fa fa-youtube-play">
+			<md-tooltip md-direction="bottom">Youtube</md-tooltip>
+		</i>
+	</a>
+	<div class="myInfo">
+		<div>Abdel Elmedny</div>
+		<div>Web developer</div>
+		<div><a href="mailto:abdelelmedny@gmail.com?Subject=Hi()" target="_top">Contact me</a></div>
+	</div>
+</footer>

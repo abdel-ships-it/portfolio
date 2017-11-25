@@ -2,31 +2,43 @@ var gulp = require("gulp");
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
-
+var cleanCSS = require('gulp-clean-css');
+var browserSync = require('browser-sync').create();
 //Directory configuration
 
-var directories = ["./*.html", "scripts/*.js", "./*.css", "pages/*.html", "sass/*.scss"];
+var directories = ["./*.html", "scripts/*.js", "./*.css", "pages/*.html"];
 
 gulp.task('livereload', function() {
   livereload.listen();
 	gulp.watch(directories, function(){
-		gulp.src(directories).pipe(livereload());
+		gulp.src(directories)
+		.pipe(livereload())
 	});
 });
 
-gulp.task('compressJS', function(){
-	gulp.watch(directories, function(){
-		return gulp.src('./scripts/*.js')
-	  .pipe(uglify({compress:{drop_console: false}}))
+gulp.task('serve', function(){
+	 gulp.watch(directories).on('change', browserSync.reload);
+});
+
+
+gulp.task('minifyJS', function(){	
+	  return gulp.src('./scripts/*.js')
+	  .pipe(uglify({compress:{drop_console: true}}))
 	  .pipe(gulp.dest('dist/scripts'));
-	  console.log("compressing");
-	});
+	  console.log("compressing");	
+})
+
+gulp.task('minifyJS:watch', function(){
+	console.log('Minifying JS');
+	gulp.watch("scripts/*.js", ['minifyJS']);
 })
 
 gulp.task('sass', function () {
   return gulp.src('./sass/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
-    .pipe(gulp.dest('dist/styling'));
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('dist/styling'))
+    .pipe(browserSync.stream());
 });
  
 gulp.task('sass:watch', function () {
@@ -34,11 +46,14 @@ gulp.task('sass:watch', function () {
   gulp.watch('./sass/*.scss', ['sass']);
 });
 
-gulp.task('css:watch', function () {
-  gulp.watch('dist/styling/*.css', ['sass']);
+gulp.task('browser-sync', function(){
+	
 });
 
-
-gulp.task('default', ['sass:watch','css:watch' , 'livereload', 'compressJS'], function() {
-	
+gulp.task('default', ['sass', 'sass:watch','livereload', 'minifyJS:watch', 'serve'], function(){
+	browserSync.init({
+		server: {
+			baseDir: "./"
+		}
+	});
 });

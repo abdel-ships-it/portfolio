@@ -1,31 +1,104 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='portfolio'>
+<html lang="en" ng-app="portfolio">
+
 <head>
-	<meta charset="UTF-8">
-	<title ng-bind="$state.current.data.pageTitle"></title>
-	   <!-- Dependencies -->
+    <!-- <base href="/"> -->
+    <title ng-bind=" 'Abdel Elmedny | ' + $state.current.data.pageTitle"></title>    
+    <!-- Dependencies -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono:400,700" rel="stylesheet">
     <script src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" async>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- <link rel="stylesheet" href="bower_components/material-design-lite/material.min-old.css">
-	<script src="bower_components/material-design-lite/material.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->    
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" async>
+    <script src="https://use.fonticons.com/4b39c0ac.js" async></script>
+    <script src="bower_components/Chart.js/dist/Chart.min.js" async></script>
+    <link rel="stylesheet" href="dist/styling/main.css">
+    <script src="scripts/script.js"></script>
+    <link rel="manifest" href="manifest.json">
     <meta name="Author" content="Abdalla Elmedny">
-    <meta name="description" content="Dashboard">
+    <meta name="description" content="Abdel">
+    <meta name="keywords" content="Portfolio, Javascript, angularJS, Abdel Elmedny, frontend, front End, frontend developer, front-end developer, FrontEnd developer, Front-end developer, web developer, web development, freelancer,Abdalla Elmedny, Abdalla El-medny">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href="dist/styling/main.css">
-	<script src="scripts/script.js"></script>
+    <meta name="google-site-verification" content="YE2kxdqYRcdex123F3RTEf1NyKxZL2R8ESSd7iAVU3k" />
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#2196f3">
+    <!-- <script src="http://jsconsole.com/js/remote.js?61c14778-21dc-4ac1-ad80-2db9c6852221"></script> -->
 </head>
+
 <body ng-controller="mainCtrl">
-	<div class="upperSheet"></div>
-	
-	<section ui-view>
-			
-			
-	</section>
+    <div id="rotateAble">
+        <div id="menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <div id="overlay" class="mobile"></div>
+    <div id="sideNav" class="mobile">
+        <header>
+            Portfolio
+        </header>
+        <ul>
+            <li>
+                <a ui-sref='projects'><i class="material-icons">list</i><span>Projects</span>
+				</a>
+            </li>
+            <li>
+                <a ui-sref='about'><i class="material-icons">perm_identity</i><span>About</span>
+				</a>
+            </li>
+        </ul>
+    </div>
+    <nav>
+        <header class="mobile">Abdel Elmedny</header>
+        <div id="logo" class="desktop">
+            <span>{</span>
+            <span>A</span><span>bdel Elmedny</span>
+            <span>}</span>
+            <span></span>
+        </div>
+        <ul>
+            <li class="desktop">
+                <a ui-sref='projects'>Projects</a>
+            </li>
+            <li class="desktop">
+                <a ui-sref='about'>About</a>
+            </li>
+            <!--   <li>
+			  		<a ui-sref='contact'>Contact</a>
+			  </li> -->
+        </ul>
+    </nav>
+    <md-progress-linear class='md-accent' md-mode="indeterminate"></md-progress-linear>
+    <section ui-view>
+    </section>
+    <div id="toast">
+        <span id="toastText">Loading...</span>
+    </div>
 </body>
+
 </html>
+<script>
+(function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
+ga('create', 'UA-76350786-2', 'auto');
+ga('send', 'pageview');
+</script>
 
-	

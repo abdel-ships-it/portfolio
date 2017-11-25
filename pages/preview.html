@@ -1,1 +1,43 @@
-<div class="text" id="preview">Preview</div>
+<iframe ng-src="{{projects[projectName].url}}" frameborder="0" scrolling="no" class='preview' ng-hide='!projects[projectName].preview'></iframe>
+
+
+<iframe class="video" ng-if="projectName == 'portfolio'" src="https://www.youtube.com/embed/C5ZwUr9g0jw?wmode=opaque&rel=0&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+
+<div id="noPreviewAvailable" class=".ng-hide" ng-if="projects[projectName].preview == false && projectName !== 'portfolio'" target="_blank">
+	<div id='content'>
+		<a href="{{projects[projectName].url}}">
+			<i class="fa fa-github"></i>
+		</a>
+	
+		<div>
+			<p>No preview available</p>
+			<p>Visit the github <a href="{{projects[projectName].url}}" target="_blank">repository</a> for the source code</p>
+		</div>
+	</div>
+</div>
+
+<div id="bottomSheet">
+    <div id="title">{{projectName}}
+        <a href="{{projects[projectName].url}}">
+            <i class="material-icons">link</i>
+        </a>
+    </div>
+    <div id="contentContainer">
+        <div id="content" ng-bind-html='projects[projectName].content'>
+        <!-- {{project}} -->
+        </div>
+        <div id="info">
+            <div class='fntMono'>Used this project</div>
+            <md-chips ng-model='projects[projectName].tags' readonly='true'></md-chips>
+            <div class="stats">
+                <div class='fntMono'>Statistics</div>
+                <p>
+                    <i class="material-icons">event</i> <span>{{projects[projectName].date}}</span>
+                </p>
+                <p>
+                    <i class="material-icons">schedule</i> <span>{{projects[projectName].time}} hours</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

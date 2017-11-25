@@ -1,5 +1,79 @@
-<div class="card">
-	<div class="title">About</div>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam voluptas, a natus qui temporibus sed, nihil eaque fuga mollitia, voluptatem rem in eos quas omnis excepturi neque quisquam tempora quidem!</p>
-	<a ui-sref="Projects">projects</a>
+<div id="aboutCard">
+	<div id="aboutTitle" class='fntMono'>
+		aboutMe()
+		<p id="tldr">
+			TL;DR 
+			<span>Abdel Elmedny</span>
+			<span>{{ age }} Y/O from Amsterdam</span>
+			<span>Web developer</span>
+			<span>Loves Javascript</span>
+			<!-- <span>Backend developer</span> -->
+		</p>
+	</div>
+	<div id="aboutContent">
+		<p>My name is Abdel and I'm a {{ age }} year old <b>web developer</b>, currently studying application development in Amsterdam. 
+		The study name is a little misleading as its mainly a study primarily focused on web development. 
+		In a nutshell, we create websites.</p>
+		<p>I really enjoy creating about anything I can imagine in javascript 
+		and really like brining beautiful concepts to life. my <a ui-sref="preview({projectName:'music player'})" href="">music player</a> is a great example of that, other than javascript I also enjoy creating animations.</p>		
+		<p>I might come over as a frontend developer but the reality is that I have experience with backend development as well. 
+		I have experience in both PHP & mySQL and I have been getting into nodeJS & express lately. This portfolio is kind of built using nodeJS actually, make sure you check out the how the underlying system works <a ui-sref="preview({projectName: 'portfolio'})" href="">here</a>!</p>
+		<p>Other than that, I am a very curious person and always want to learn more and more. I am very passionate and motivated when it comes to my work, which thrives endless self improvement.</p>
+		<p>Other than my passion for programming, I am very much into politics and like to game from time to time. I also go to the cinema very often, and workout whenever I am not overly attached to my projects.</p>
+
+	</div>
 </div>
+
+<!-- <div class="divider"></div> -->
+
+<div class="fntMono divider">myExperience()</div>
+
+<div id="experienceContainer">
+	<div class="type" ng-repeat='(key, data) in experience'>
+		<div class="fntMono title">{{key}}</div>
+		<div class="smCard" ng-repeat="item in data">
+			<div class='sprite {{item}}'></div>
+			<div class="info">
+				{{item}}
+			</div>	
+		</div>
+	</div>	
+</div>
+
+<div class="fntMono divider">myStatistics()</div>
+
+<canvas id="statChart"></canvas>
+
+
+<footer>		
+	<a href="https://github.com/realappie" target="_blank">
+		<i class="fa fa-github">
+			<md-tooltip md-direction="bottom">Github</md-tooltip>
+		</i>
+	</a>
+	<a href="http://stackoverflow.com/users/4047409/5parc" target="_blank">
+		<i class="fa fa-stack-overflow">
+			<md-tooltip md-direction="bottom">Stackoverflow</md-tooltip>
+		</i>
+	</a>
+	<a href="https://codepen.io/Appie/" target="_blank">
+		<i class="fa fa-codepen">
+			<md-tooltip md-direction="bottom">Codepen</md-tooltip>
+		</i>
+	</a>
+	<a href="https://www.linkedin.com/in/abdallaelmedny" target="_blank">
+		<i class="fa fa-linkedin-square">
+			<md-tooltip md-direction="bottom">linkedIn</md-tooltip>
+		</i>
+	</a>
+	<a href="https://www.youtube.com/channel/UC3PDJtMHtJPba8mOWykOsKw" target="_blank">
+		<i class="fa fa-youtube-play">
+			<md-tooltip md-direction="bottom">Youtube</md-tooltip>
+		</i>
+	</a>
+	<div class="myInfo">
+		<div>Abdel Elmedny</div>
+		<div>Web developer</div>
+		<div><a href="mailto:abdelelmedny@gmail.com?Subject=Hi()" target="_top">Contact me</a></div>
+	</div>
+</footer>
