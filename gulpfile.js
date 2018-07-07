@@ -46,10 +46,6 @@ gulp.task('sass:watch', function () {
   gulp.watch('./sass/*.scss', ['sass']);
 });
 
-gulp.task('browser-sync', function(){
-	
-});
-
 gulp.task('default', ['sass', 'sass:watch','livereload', 'minifyJS:watch', 'serve'], function(){
 	browserSync.init({
 		server: {
