@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "gulp": "gulp"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,8 @@
     "browser-sync": "^2.13.0",
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.10",
-    "gulp-livereload": "^3.8.1"
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0"
   }
 }
