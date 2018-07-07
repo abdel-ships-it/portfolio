@@ -24,7 +24,6 @@ app
             $rootScope.database = firebase.database().ref();
             $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams, options) {
-                    console.log(event);
                     /*Fixing stuck title bug*/
                     slideAway();
                     if (toState.name == 'preview') {
@@ -47,13 +46,6 @@ app
                 $state.go('404');
             });
 
-            $("iframe").on("click", function() {
-                console.log($(this).offset());
-                // console.log("iframe clicked!");
-                //height = width / (16/9)
-            });
-
-
             /*Hamburger to arrow*/
             var arrow = false;
             var menuToArrow = function() {
@@ -71,11 +63,9 @@ app
                     document.querySelector('.line:nth-of-type(3)').className = "line";
                 }
                 arrow = !arrow;
-                console.log(arrow);
                 return arrow;
             }
             document.getElementById('rotateAble').addEventListener('click', function() {
-                console.log('arrow is ', arrow);
                 if (arrow) {
                     $state.go('projects');
                 } else {
@@ -141,7 +131,6 @@ app
                     },
                     controller: 'previewCtrl',
                     onEnter: function() {
-                        console.log('preview has loaded');
                         $("md-progress-linear").addClass('preview')
                         $("nav").addClass('slideUp');
                         $("#menu .line").css({
@@ -193,14 +182,7 @@ app
             $scope.state = $state;
             $scope.html = "html";
             var database = firebase.database().ref();
-            // Remove later 
-            console.info('main ctrl');
-            database.child('projects').orderByChild('time').once('value')
-                .then(function(data) {
-                    console.dir(data.val());
-                });
 
-            //$scope.projects = $firebaseObject(database.child("projects").limitToFirst(3));
             $scope.projects = $firebaseObject(database.child("projects"));
             $scope.projects.$loaded()
                 .then(function() {
@@ -226,15 +208,13 @@ app
                 'Studying.now()': ['ionic', 'nodejs', "Typescript"]
             }
             $scope.fullScreen = function() {
-                    console.log('click');
-                }
+            }
                 // Default colors for the navigation bar
             var white = "#FFFFFF";
             var primary = "#2196F3";
             var accent = "#FFC107";
 
             $rootScope.changeNavColors = function(background, color) {
-                console.log("hover");
                 /*To do, store transitinons like so $(elem).css('transition') in a varaible and restore that in the resetNavColors function*/
                 $("nav").css({
                     "background": background,
@@ -305,27 +285,6 @@ app
 
             $scope.projectName = $stateParams.projectName
             $scope.project = {};
-            console.info('title', title);
-
-            // Please notice local storage has a max of 5mbs, so be conservative 
-            // Disabling local storage for time being because it cause 'updating' posts causes problems
-            // if(localStorage.getItem(title)){
-            //     console.info('Found project in local storage');
-            //     $scope.project = JSON.parse(localStorage.getItem(title));
-            // }else{  
-            // console.info('No project found in local storage, loading it');
-
-            $scope.projects.$loaded()
-                .then(function(data) {
-
-                })
-                .catch(function(error) {
-                    console.error("Error:", error);
-                });
-            //}
-            $scope.projects.$watch(function() {
-                console.log('change');
-            });
 
             if (!$stateParams.projectName) {
                 $state.go('404');
@@ -335,7 +294,6 @@ app
                     $(window).scroll(function() {
                         //Calculation the bottom sheet distance from the top of the page
                         var topDistance = $("#bottomSheet").offset().top - $(window).scrollTop()
-                            //console.log($("#bottomSheet").offset().top - $(window).scrollTop());
                         if (topDistance <= 1) {
                             // Moving the title element
                             var copy = $("#title").clone();
@@ -395,9 +353,8 @@ app
 
         function renderStats(chartData) {
             var ctx = document.getElementById("statChart").getContext("2d");
-            console.log(ctx);
             // Wrap code in a scroll function
-            var chartInstance = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: chartData,
                 options: {
