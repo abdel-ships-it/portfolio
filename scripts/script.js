@@ -320,6 +320,9 @@ app
             });
         }
     ]).controller('aboutCtrl', ['$scope', '$firebaseArray', '$rootScope', function($scope, $firebaseArray, $rootScope) {
+
+        $scope.age = new Date().getYear() - new Date('1-15-1997').getYear();
+
         var statsRef = $rootScope.database.child('stats/');
         var stats = $firebaseArray(statsRef);
         stats.$loaded().then(function() {
